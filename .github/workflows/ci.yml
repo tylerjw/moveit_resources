@@ -11,11 +11,20 @@ jobs:
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: melodic, ROS_REPO: ros}
-          - {ROS_DISTRO: kinetic, ROS_REPO: ros}
-          - {ROS_DISTRO: indigo, ROS_REPO: ros}
+          - {ROS_DISTRO: melodic}
+          - {ROS_DISTRO: kinetic}
+          - {ROS_DISTRO: indigo}
+    env:
+      - ROS_REPO: ros
+      - CCACHE_DIR: ~/.ccache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.ccache
+          key: ccache-${{ env.ROS_DISTRO }}
+
       - uses: 'ros-industrial/industrial_ci@master'
         env: ${{matrix.env}}
