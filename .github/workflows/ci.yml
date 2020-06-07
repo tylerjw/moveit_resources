@@ -1,22 +1,18 @@
 name: CI
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-18.04
-
+  industrial_ci:
+    strategy:
+      matrix:
+        env:
+          - {ROS_DISTRO: melodic, ROS_REPO: testing}
+            {ROS_DISTRO: melodic, ROS_REPO: main}
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: moveit_ci test
-      env:
-        ROS_DISTRO: melodic
-        ROS_REPO: ros
-      run: |
-        git clone -q https://github.com/ros-planning/moveit_ci.git .moveit_ci
-        source .moveit_ci/travis.sh
+      uses: 'ros-industrial/industrial_ci@master'
+    - name: industrial_ci
+      env: ${{matrix.env}}
+
