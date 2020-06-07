@@ -16,15 +16,15 @@ jobs:
           - {ROS_DISTRO: indigo,}
     env:
       ROS_REPO: ros
-      CCACHE_DIR: /root/.ccache
+      CCACHE_DIR: ${{ HOME }}/.ccache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
       - uses: actions/cache@v2
         with:
-          path: /root/.ccache
-          key: ccache-${{ env.ROS_DISTRO }}
+          path: ${{ HOME }}/.ccache
+          key: ccache-${{ matrix.env.ROS_DISTRO }}
 
       - uses: 'ros-industrial/industrial_ci@master'
         env: ${{matrix.env}}
