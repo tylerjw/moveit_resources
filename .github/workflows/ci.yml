@@ -11,12 +11,12 @@ jobs:
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: melodic}
-          - {ROS_DISTRO: kinetic}
-          - {ROS_DISTRO: indigo}
+          - {ROS_DISTRO: melodic,}
+          - {ROS_DISTRO: kinetic,}
+          - {ROS_DISTRO: indigo,}
     env:
-      - ROS_REPO: ros
-      - CCACHE_DIR: ~/.ccache
+      ROS_REPO: ros
+      CCACHE_DIR: ~/.ccache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
