@@ -1,0 +1,22 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: moveit_ci test
+      env:
+        ROS_DISTRO: melodic
+        ROS_REPO: ros
+      run: |
+        git clone -q https://github.com/ros-planning/moveit_ci.git .moveit_ci
+        source .moveit_ci/travis.sh
