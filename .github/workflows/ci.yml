@@ -17,7 +17,7 @@ jobs:
     env:
       ROS_REPO: ros
       HOME: $HOME
-      CCACHE_DIR: ${{ env.HOME }}/.ccache
+      CCACHE_DIR: "$HOME/.ccache"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
