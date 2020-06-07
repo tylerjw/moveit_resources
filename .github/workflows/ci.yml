@@ -16,7 +16,7 @@ jobs:
           - {ROS_DISTRO: indigo,}
     env:
       ROS_REPO: ros
-      CCACHE_DIR: ${{ HOME }}/.ccache
+      CCACHE_DIR: /github/home/.ccache
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
