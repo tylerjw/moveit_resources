@@ -29,4 +29,4 @@ jobs:
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
-          files: '**/test_results/**/*.xml'
+          files: '/tmp/**/test_results/**/*.xml'
