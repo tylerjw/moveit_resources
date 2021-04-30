@@ -25,3 +25,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ros-industrial/industrial_ci@master
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: '**/test_results/**/*.xml'
